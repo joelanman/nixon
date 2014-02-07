@@ -4,7 +4,6 @@ A framework to step through a website saving screenshots
 
 ## Requirements
 
-* [Node](http://nodejs.org)
 * [CasperJS](http://casperjs.org)
 * [PhantomJS](http://phantomjs.org) or [SlimerJS](http://slimerjs.org)
 
