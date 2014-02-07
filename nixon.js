@@ -1,59 +1,34 @@
 
-var system = require('system'); 
-var username = system.env.IER_STAGING_USERNAME; 
-var password = system.env.IER_STAGING_PASSWORD; 
-
+var system = require('system'),
+    config = require('config').config;
 
 casper.options.verbose = true;
 casper.options.logLevel = "info";
 
-casper.log("username: " + username, "info");
-casper.log("password: " + password, "info");
-
-var imagePath = 'screenshots/',
-    sitePath = 'https://staging-frontend.ertp.alphagov.co.uk/register-to-vote';
-
-var sizes = [,
-    [1024,768],
-    [320,480]
-];
-
-var steps = {
-
-    'home' : function(){
-
-    },
-
-    'part of uk': function(){
-
-        this.click('#get-started .button');
-    },
-
-    'part of uk error': function(){
-
-        this.click('#continue');
-
-    },
-};
+var imagePath = 'screenshots/';
 
 var stepsArray = [];
 
-for (var step in steps){
+for (var step in config.steps){
 
     stepsArray.push({'name': step,
-                     'func': steps[step]});
+                     'func': config.steps[step]});
 
 }
 
 casper.log(stepsArray.length, "info");
 
-casper.test.begin('Register to Vote', function suite(test) {
+casper.test.begin('Screenshots', function suite(test) {
 
     casper.start();
 
-    casper.setHttpAuth(username, password);
+    if (config.username && config.password){
 
-    casper.thenOpen(sitePath);
+        casper.setHttpAuth(config.username, config.password);
+
+    }
+
+    casper.thenOpen(config.sitePath);
 
     casper.log(stepsArray.length, "info");
 
@@ -65,7 +40,7 @@ casper.test.begin('Register to Vote', function suite(test) {
 
         step.func.call(this);
 
-        casper.eachThen(sizes, function(response){
+        casper.eachThen(config.sizes, function(response){
 
             var size = response.data;
 
