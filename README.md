@@ -1,6 +1,6 @@
 # nixon
 
-### a framework to get screenshots involving interactions (triggering validation, etc)
+A framework to step through a website saving screenshots
 
 ## Requirements
 
@@ -20,3 +20,13 @@ casperjs test nixon.js
 ```
 
 Screenshots will be saved into a 'screenshots' folder.
+
+## How to use
+
+**sitePath** is the URL of your start page.
+
+**sizes** is an array of screen sizes you would like to capture.
+
+**steps** is an object - each property is a step you would like take in order to get a screenshot. The function is code to set up the screenshot, using the [CasperJS API](http://docs.casperjs.org/en/latest/). When the function is complete, screenshots will be taken in all the sizes declared in **sizes**
+
+
