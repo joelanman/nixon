@@ -22,6 +22,8 @@ Screenshots will be saved into a 'screenshots' folder.
 
 ## How to use
 
+Edit config.js:
+
 **sitePath** is the URL of your start page.
 
 **sizes** is an array of screen sizes you would like to capture.
