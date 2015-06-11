@@ -12,8 +12,6 @@ A framework to step through a website saving screenshots
 
 In the terminal run:
 
-* `git checkout horseman`
-
 * `npm install`
 
 * `node nixon.js`
