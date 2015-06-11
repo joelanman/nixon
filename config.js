@@ -3,10 +3,10 @@ var system = require('system');
 
 exports.config = {
 
-    sitePath: 'https://staging-frontend.ertp.alphagov.co.uk/register-to-vote',
+    sitePath: 'https://www.gov.uk',
 
-    username: system.env.IER_STAGING_USERNAME,
-    password: system.env.IER_STAGING_PASSWORD,
+    username: "",
+    password: "",
 
     sizes : [,
         [1024,768],
@@ -19,14 +19,9 @@ exports.config = {
 
         },
 
-        'part of uk': function(){
+        'browse': function(){
 
-            this.click('#get-started .button');
-        },
-
-        'part of uk error': function(){
-
-            this.click('#continue');
+            this.click('.categories-list a');
 
         }
     }

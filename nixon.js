@@ -1,9 +1,17 @@
-
 var system = require('system'),
-    config = require('config').config;
+    fs = require('fs'),
+    path = require('path');
+
+var currentFile = system.args[3];
+var dirname = path.dirname(currentFile);
+
+console.log(currentFile);
+console.log(dirname);
+
+var config = require(path.join(dirname,'config')).config;
 
 casper.options.verbose = true;
-casper.options.logLevel = "info";
+casper.options.logLevel = "debug";
 
 var imagePath = 'screenshots/';
 
