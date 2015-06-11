@@ -10,12 +10,13 @@ A framework to step through a website saving screenshots
 
 * Clone this repo.
 
-* Run the app:
+In the terminal run:
 
+* `checkout horseman`
 
-```
-node nixon.js
-```
+* `npm install`
+
+* `node nixon.js`
 
 Screenshots will be saved into a 'screenshots' folder.
 
