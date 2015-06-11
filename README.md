@@ -12,7 +12,7 @@ A framework to step through a website saving screenshots
 
 In the terminal run:
 
-* `checkout horseman`
+* `git checkout horseman`
 
 * `npm install`
 
