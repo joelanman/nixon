@@ -4,8 +4,7 @@ A framework to step through a website saving screenshots
 
 ## Requirements
 
-* [CasperJS](http://casperjs.org)
-* [PhantomJS](http://phantomjs.org) or [SlimerJS](http://slimerjs.org)
+* [PhantomJS](http://phantomjs.org)
 
 ## Getting started
 
@@ -15,7 +14,7 @@ A framework to step through a website saving screenshots
 
 
 ```
-casperjs test nixon.js
+node nixon.js
 ```
 
 Screenshots will be saved into a 'screenshots' folder.
@@ -28,6 +27,6 @@ Edit config.js:
 
 **sizes** is an array of screen sizes you would like to capture.
 
-**steps** is an object - each property is a step you would like take in order to get a screenshot. The function is code to set up the screenshot, using the [CasperJS API](http://docs.casperjs.org/en/latest/). When the function is complete, screenshots will be taken in all the sizes declared in **sizes**
+**steps** is an object - each property is a step you would like take in order to get a screenshot. The function is code to set up the screenshot. You can use jQuery commands. When the function is complete, screenshots will be taken in all the sizes declared in **sizes**
 
 
