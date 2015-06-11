@@ -1,0 +1,26 @@
+{
+  "name": "nixon",
+  "version": "1.0.0",
+  "description": "screenshot tool",
+  "main": "nixon.js",
+  "dependencies": {
+    "node-horseman": "^1.5.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joelanman/nixon.git"
+  },
+  "keywords": [
+    "screenshot"
+  ],
+  "author": "Joe Lanman",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/joelanman/nixon/issues"
+  },
+  "homepage": "https://github.com/joelanman/nixon#readme"
+}

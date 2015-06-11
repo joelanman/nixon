@@ -1,82 +1,36 @@
-var system = require('system'),
-    fs = require('fs'),
-    path = require('path');
+var path = require('path');
+var Horseman = require('node-horseman');
+var horseman = new Horseman();
+var config = require(path.join(__dirname, 'config'));
+var imagePath = "screenshots";
 
-var currentFile = system.args[3];
-var dirname = path.dirname(currentFile);
+console.log(config.sitePath);
 
-console.log(currentFile);
-console.log(dirname);
+horseman
+  .open(config.sitePath);
 
-var config = require(path.join(dirname,'config')).config;
+ var stepNumber = 1;
 
-casper.options.verbose = true;
-casper.options.logLevel = "debug";
+for (var name in config.steps){
+	
+	console.log(stepNumber + ": " + name);
 
-var imagePath = 'screenshots/';
+	console.log(config.steps[name]);
 
-var stepsArray = [];
+	horseman.evaluate(config.steps[name]);
 
-for (var step in config.steps){
+	config.sizes.forEach(function(size){
 
-    stepsArray.push({'name': step,
-                     'func': config.steps[step]});
+		var filename = path.join(imagePath, stepNumber + '-' + size[0] + 'x' + size[1] + '-' + name + '.png');
+		console.log(filename);
+		horseman
+			.viewport(size[0],size[1])
+			.screenshot(filename);
+	});
 
+	stepNumber++;
+
+	horseman.wait(1000);
 }
 
-casper.log(stepsArray.length, "info");
-
-casper.test.begin('Screenshots', function suite(test) {
-
-    casper.start();
-
-    if (config.username && config.password){
-
-        casper.setHttpAuth(config.username, config.password);
-
-    }
-
-    casper.thenOpen(config.sitePath);
-
-    casper.log(stepsArray.length, "info");
-
-    casper.eachThen(stepsArray, function(response){
-
-        var step = response.data;
-
-        casper.log('running ' + step.name, 'info');
-
-        step.func.call(this);
-
-        casper.eachThen(config.sizes, function(response){
-
-            var size = response.data;
-
-            this.viewport(size[0], size[1], function(){
-
-                casper.log('Size: ' + size[0] + 'x' + size[1], 'info');
-
-                casper.wait(10, function() {
-
-                    this.scrollTo(0, 0);
-
-                    var filename = imagePath + size[0] + 'x' + size[1] + '-' + step.name + '.png';
-         
-                    this.captureSelector(filename, 'body');
-
-                });
-
-            });
-
-        });
-
-    });
-/*
-    require('utils').dump(casper.steps.map(function(step) {
-        return step.toString();
-    }));
-*/
-    casper.run(function() {
-        test.done();
-    });
-});
+horseman.close();
