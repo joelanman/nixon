@@ -1,10 +1,18 @@
 var path = require('path');
 var Horseman = require('node-horseman');
 var horseman = new Horseman();
-var config = require(path.join(__dirname, 'config'));
+
 var imagePath = "screenshots";
 
-console.log(config.sitePath);
+var argv = require('minimist')(process.argv.slice(2));
+
+var scriptName = argv._[0] || "example-script";
+
+console.log("running: " + scriptName);
+
+var config = require(path.join(__dirname, 'scripts', scriptName));
+
+console.log("opening URL: " + config.sitePath);
 
 horseman
   .open(config.sitePath);

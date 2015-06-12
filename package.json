@@ -4,6 +4,7 @@
   "description": "screenshot tool",
   "main": "nixon.js",
   "dependencies": {
+    "minimist": "^1.1.1",
     "node-horseman": "^1.5.1"
   },
   "devDependencies": {},

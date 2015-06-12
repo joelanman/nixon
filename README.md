@@ -14,13 +14,19 @@ In the terminal run:
 
 * `npm install`
 
-* `node nixon.js`
+* `node nixon`
 
 Screenshots will be saved into a 'screenshots' folder.
 
 ## How to use
 
-Edit config.js:
+Make a copy of `scripts/example.js`, for example `scripts/blog.js`
+
+You can now run this script:
+
+`node nixon blog`
+
+Script options:
 
 **sitePath** is the URL of your start page.
 
