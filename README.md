@@ -1,6 +1,6 @@
 # Nixon
 
-A framework to step through a website saving screenshots
+A framework to step through a website saving screenshots, based on [Horseman](https://github.com/johntitus/node-horseman).
 
 ## You need
 
@@ -33,6 +33,6 @@ Script options:
 
 **sizes** is an array of screen sizes you would like to capture.
 
-**steps** is an object - each property is a step you would like take in order to get a screenshot. The function is code to set up the screenshot. You can use jQuery commands. When the function is complete, screenshots will be taken in all the sizes declared in **sizes**
+**steps** is an object - each property is a step you would like take in order to get a screenshot. If it's a string, Nixon will open the URL, if it's a function, it will be run in the browser. You can use jQuery commands.
 
 
