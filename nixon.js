@@ -6,7 +6,7 @@ var imagePath = "screenshots";
 
 var argv = require('minimist')(process.argv.slice(2));
 
-var scriptName = argv._[0] || "example-script";
+var scriptName = argv._[0] || "example";
 
 console.log("running: " + scriptName);
 

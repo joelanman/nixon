@@ -1,14 +1,15 @@
-# nixon
+# Nixon
 
 A framework to step through a website saving screenshots
 
-## Requirements
+## You need
 
+* [Node.js](http://node.js)
 * [PhantomJS](http://phantomjs.org) - version 2 or later
 
 ## Getting started
 
-* Clone this repo.
+* [Download Nixon](archive/master.zip)
 
 In the terminal run:
 
