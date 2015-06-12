@@ -43,7 +43,7 @@ for (var name in script.steps){
 
 	script.sizes.forEach(function(size){
 
-		var filename = path.join(imagePath, scriptName, stepNumber + '-' + size[0] + 'x' + size[1] + '-' + name + '.png');
+		var filename = path.join(imagePath, scriptName, "" + size[0], stepNumber + '-' + name + '.png');
 		console.log(filename);
 		horseman
 			.viewport(size[0],size[1])

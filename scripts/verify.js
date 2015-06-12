@@ -60,6 +60,21 @@ module.exports = {
             $('#residency-more-than-12')[0].click();
             $('#next-button')[0].click();
 
+        },
+
+        'documents': function(){
+
+            $('#yes')[0].click();
+            $('#next-button')[0].click();
+
+        },
+
+        'choose-company': function(){
+
+            $('#driving_license_yes')[0].click();
+            $('#passport_yes')[0].click();
+            $('#next-button')[0].click();
+
         }
     }
 };
