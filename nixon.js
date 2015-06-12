@@ -10,20 +10,15 @@ var scriptName = argv._[0] || "example";
 
 console.log("running: " + scriptName);
 
-var config = require(path.join(__dirname, 'scripts', scriptName));
+var script = require(path.join(__dirname, 'scripts', scriptName));
 
-console.log("opening URL: " + config.sitePath);
+var stepNumber = 1;
 
-horseman
-  .open(config.sitePath);
-
- var stepNumber = 1;
-
-for (var name in config.steps){
+for (var name in script.steps){
 	
 	console.log(stepNumber + ": " + name);
 
-	var step = config.steps[name];
+	var step = script.steps[name];
 
 	if (step.call){
 
@@ -42,7 +37,7 @@ for (var name in config.steps){
 	//console.log("... done waiting");
 	console.log(horseman.url());
 
-	config.sizes.forEach(function(size){
+	script.sizes.forEach(function(size){
 
 		var filename = path.join(imagePath, scriptName, stepNumber + '-' + size[0] + 'x' + size[1] + '-' + name + '.png');
 		console.log(filename);
