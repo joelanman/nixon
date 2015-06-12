@@ -1,8 +1,6 @@
 
 module.exports = {
 
-    sitePath: 'https://www.gov.uk/update-company-car-details',
-
     username: "",
     password: "",
 
