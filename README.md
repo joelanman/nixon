@@ -9,7 +9,7 @@ A framework to step through a website saving screenshots
 
 ## Getting started
 
-* [Download Nixon](archive/master.zip)
+* [Download Nixon](/archive/master.zip)
 
 In the terminal run:
 
