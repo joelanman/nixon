@@ -33,6 +33,6 @@ Script options:
 
 **sizes** is an array of screen sizes you would like to capture.
 
-**steps** is an object - each property is a step you would like take in order to get a screenshot. If it's a string, Nixon will open the URL, if it's a function, it will be run in the browser. You can use jQuery commands.
+**steps** is an object - each property is a step you would like take in order to get a screenshot. If it's a string, Nixon will open the URL. If it's a function, it will be run in the browser. You can use jQuery commands.
 
 
