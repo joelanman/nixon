@@ -23,7 +23,24 @@ for (var name in config.steps){
 	
 	console.log(stepNumber + ": " + name);
 
-	horseman.evaluate(config.steps[name]);
+	var step = config.steps[name];
+
+	if (step.call){
+
+		horseman.manipulate(step);
+
+	} else {
+
+		horseman.open(step);
+
+	}
+
+	//console.log("waiting for next page ...");
+
+	horseman.waitForNextPage();
+
+	//console.log("... done waiting");
+	console.log(horseman.url());
 
 	config.sizes.forEach(function(size){
 
@@ -32,11 +49,12 @@ for (var name in config.steps){
 		horseman
 			.viewport(size[0],size[1])
 			.screenshot(filename);
+
 	});
 
 	stepNumber++;
 
-	horseman.wait(1000);
 }
 
 horseman.close();
+console.log("All done");
