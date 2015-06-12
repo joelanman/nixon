@@ -4,7 +4,7 @@ A framework to step through a website saving screenshots
 
 ## Requirements
 
-* [PhantomJS](http://phantomjs.org)
+* [PhantomJS](http://phantomjs.org) - version 2 or later
 
 ## Getting started
 
