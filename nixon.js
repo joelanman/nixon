@@ -27,7 +27,7 @@ for (var name in config.steps){
 
 	config.sizes.forEach(function(size){
 
-		var filename = path.join(imagePath, stepNumber + '-' + size[0] + 'x' + size[1] + '-' + name + '.png');
+		var filename = path.join(imagePath, scriptName, stepNumber + '-' + size[0] + 'x' + size[1] + '-' + name + '.png');
 		console.log(filename);
 		horseman
 			.viewport(size[0],size[1])
