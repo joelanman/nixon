@@ -23,8 +23,6 @@ for (var name in config.steps){
 	
 	console.log(stepNumber + ": " + name);
 
-	console.log(config.steps[name]);
-
 	horseman.evaluate(config.steps[name]);
 
 	config.sizes.forEach(function(size){
