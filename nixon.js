@@ -12,6 +12,10 @@ console.log("running: " + scriptName);
 
 var script = require(path.join(__dirname, 'scripts', scriptName));
 
+if (!script.keepCookies){
+	horseman.cookies([]);
+}
+
 var stepNumber = 1;
 
 for (var name in script.steps){
