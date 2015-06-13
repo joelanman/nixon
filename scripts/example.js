@@ -1,21 +1,17 @@
 
 module.exports = {
 
-    sitePath: 'https://www.gov.uk',
-
     username: "",
     password: "",
 
-    sizes : [,
+    sizes : [
         [1024,768],
         [320,480]
     ],
 
     steps : {
 
-        'home' : function(){
-
-        },
+        'home' : "https://www.gov.uk",
 
         'browse': function(){
 

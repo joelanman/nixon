@@ -2,6 +2,30 @@ var path = require('path');
 var Horseman = require('node-horseman');
 var horseman = new Horseman();
 
+// patch horseman.crop
+
+horseman.crop = function( area, path ){
+  if ( typeof area === "string" ){
+    area = this.boundingRectangle( area );
+  } 
+  var rect = {
+    top : area.top,
+    left : area.left,
+    width : area.width,
+    height : area.height
+  };
+  var self = this;
+  this.page.set('clipRect', rect, function(){
+    self.pause.unpause('clipRect');
+    self.screenshot( path );
+    self.page.set('clipRect', {});
+    return this;
+  });
+  this.pause.pause('clipRect');  
+}
+
+// end patch
+
 var imagePath = "screenshots";
 
 var argv = require('minimist')(process.argv.slice(2));
@@ -45,9 +69,22 @@ for (var name in script.steps){
 
 		var filename = path.join(imagePath, scriptName, "" + size[0], stepNumber + '-' + name + '.png');
 		console.log(filename);
-		horseman
-			.viewport(size[0],size[1])
-			.screenshot(filename);
+
+		if (size[2] == "crop") {
+
+			console.log('crop');
+			horseman
+				.viewport(size[0], size[1])
+				.crop({ top : 0, left: 0, width: size[0], height: size[1] }, filename);
+
+		} else {
+
+			console.log('screenshot');
+			horseman
+				.viewport(size[0], size[1])
+				.screenshot(filename);
+
+		}
 
 	});
 

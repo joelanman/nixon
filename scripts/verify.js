@@ -5,8 +5,8 @@ module.exports = {
     password: "",
 
     sizes : [,
-        [1024,768],
-        [320,480]
+        [1024, 768, "crop"],
+        [320, 480]
     ],
 
     steps : {
@@ -20,6 +20,8 @@ module.exports = {
         },
 
         'verify-home': function(){
+
+            // auto redirect from SAML
 
         },
 
@@ -75,6 +77,19 @@ module.exports = {
             $('#passport_yes')[0].click();
             $('#next-button')[0].click();
 
+        },
+
+        'about-company': function(){
+
+            $('.company-about a')[0].click();
+
+        },
+
+        'company-chosen': function(){
+
+            $('.dialog-inner:visible button')[0].click();
+
         }
+
     }
 };
