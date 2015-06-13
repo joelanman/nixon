@@ -1,4 +1,5 @@
 var path = require('path');
+var sugar = require('sugar');
 var Horseman = require('node-horseman');
 var horseman = new Horseman();
 
@@ -26,15 +27,23 @@ horseman.crop = function( area, path ){
 
 // end patch
 
-var imagePath = "screenshots";
-
 var argv = require('minimist')(process.argv.slice(2));
 
 var scriptName = argv._[0] || "example";
 
+var script = require(path.join(__dirname, 'scripts', scriptName));
+
 console.log("running: " + scriptName);
 
-var script = require(path.join(__dirname, 'scripts', scriptName));
+// Image save path
+var imagePath = "screenshots";
+var stringTime = Date.create().format('{yyyy}-{MM}-{dd}T{hh}-{mm}-{ss}');
+var saveFolder = path.join(imagePath, scriptName);
+
+// If not overwrite, save to datetime folder.
+if (!script.overwrite){
+	saveFolder = path.join(saveFolder, stringTime);
+}
 
 if (!script.keepCookies){
 	horseman.cookies([]);
@@ -67,7 +76,7 @@ for (var name in script.steps){
 
 	script.sizes.forEach(function(size){
 
-		var filename = path.join(imagePath, scriptName, "" + size[0], stepNumber + '-' + name + '.png');
+		var filename = path.join(saveFolder, "" + size[0], stepNumber + '-' + name + '.png');
 		console.log(filename);
 
 		if (size[2] == "crop") {
