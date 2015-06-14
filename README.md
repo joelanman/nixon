@@ -30,7 +30,7 @@ You can now run this script:
 Script options:
 
 ### sizes
-An array of objects containing the sizes and settings we want for our screenshots.
+An array of objects containing the sizes and settings we want for our screenshots.<br />
 *Type:* `Array`<br />
 *Default:* `[{ width: 1024}]`<br />
 
