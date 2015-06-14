@@ -1,7 +1,7 @@
 var path = require('path');
-var sugar = require('sugar');
 var Horseman = require('node-horseman');
 var horseman = new Horseman();
+var moment = require('moment');
 
 // patch horseman.crop
 
@@ -37,7 +37,7 @@ console.log("running: " + scriptName);
 
 // Image save path
 var imagePath = "screenshots";
-var stringTime = Date.create().format('{yyyy}-{MM}-{dd}T{hh}-{mm}-{ss}');
+var stringTime = moment().format('YYYY-MM-DDTHH-mm-ss');
 var saveFolder = path.join(imagePath, scriptName);
 
 // If not overwriteFiles, save to datetime folder.

@@ -5,8 +5,8 @@
   "main": "nixon.js",
   "dependencies": {
     "minimist": "^1.1.1",
-    "node-horseman": "^1.5.1",
-    "sugar": "^1.4.1"
+    "moment": "^2.10.3",
+    "node-horseman": "^1.5.1"
   },
   "devDependencies": {},
   "scripts": {
