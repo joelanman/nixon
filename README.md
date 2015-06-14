@@ -29,11 +29,10 @@ You can now run this script:
 
 Script options:
 
-### sizes is an array of screen sizes you would like to capture.
+### sizes
+An array of objects containing the sizes and settings we want for our screenshots.
 *Type:* `Array`<br />
 *Default:* `[{ width: 1024}]`<br />
-
-An array of objects containing the sizes and settings we want for our screenshots.
 
 For example:
 ```js
@@ -103,6 +102,7 @@ The settings available are as follows:
 	```
 	Note if passing a selector, cropping does not scale correctly.
 
-### steps is an object - each property is a step you would like take in order to get a screenshot. If it's a string, Nixon will open the URL. If it's a function, it will be run in the browser. You can use jQuery commands.
+### steps
+An object - each property is a step you would like take in order to get a screenshot. If it's a string, Nixon will open the URL. If it's a function, it will be run in the browser. You can use jQuery commands.
 
 
