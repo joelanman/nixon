@@ -40,8 +40,8 @@ var imagePath = "screenshots";
 var stringTime = Date.create().format('{yyyy}-{MM}-{dd}T{hh}-{mm}-{ss}');
 var saveFolder = path.join(imagePath, scriptName);
 
-// If not overwrite, save to datetime folder.
-if (!script.overwrite){
+// If not overwriteFiles, save to datetime folder.
+if (!script.overwriteFiles){
 	saveFolder = path.join(saveFolder, stringTime);
 }
 

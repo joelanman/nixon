@@ -29,6 +29,18 @@ You can now run this script:
 
 Script options:
 
+**overwriteFiles**
+
+*Type:* `Boolean`<br />
+*Default:* `false`<br />
+
+Overwrite any existing files. If not set, images will be saved in to a dated folder.
+
+For example:
+```js
+overwriteFiles: true
+```
+
 **sizes** is an array of screen sizes you would like to capture.
 
 **steps** is an object - each property is a step you would like take in order to get a screenshot. If it's a string, Nixon will open the URL. If it's a function, it will be run in the browser. You can use jQuery commands.
