@@ -58,7 +58,7 @@ Type: Array
 
 An array of step objects for the script to carry out (see below).
 
-## Steps
+## Step options
 
 #### expectedUrl
 
