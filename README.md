@@ -29,7 +29,7 @@ You can now run this script:
 
 ### Script options
 
-**screenshotPath**
+#### screenshotPath
 
 Type: String
 
@@ -44,7 +44,7 @@ Where your screenshots will be saved. Supports the following tags:
 
 For example: "screenshots/[script]/[size.width]/[#]-[step.name]"
 
-**sizes**
+#### sizes
 
 Type: Array
 
@@ -60,13 +60,13 @@ An array of step objects for the script to carry out (see below).
 
 ## Steps
 
-**expectedUrl**
+#### expectedUrl
 
 Type: String (URL)
 
 If the browser is not on the `expectedUrl` at the end of this step, Nixon will log a warning in the console.
 
-**js**
+#### js
 
 Type: Function
 
@@ -74,13 +74,13 @@ This JavaScript function will be run in the browser before the screenshot is tak
 
 If `open` is also set, it will run before `js`.
 
-**name**
+#### name
 
 Type: String
 
 The name of the step is used in the filename when saving screenshots.
 
-**open**
+#### open
 
 Type: String (URL)
 
@@ -88,7 +88,7 @@ The browser will open the URL set here.
 
 If `js` is also set, it will run after `open`.
 
-**screenshot**
+#### screenshot
 
 Type: Boolean
 Default: `true`
