@@ -35,7 +35,7 @@ Type: String
 
 Where your screenshots will be saved. Supports the following tags:
 
-- # - the screenshot number
+- **#** - the screenshot number
 - **script** - the name of the script
 - **size.width**
 - **size.hight**
