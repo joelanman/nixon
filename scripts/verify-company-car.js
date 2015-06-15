@@ -12,15 +12,8 @@ module.exports = {
     steps : [
 
         {
-            name: "start",
-            open: "https://www.gov.uk/update-company-car-details"
-        },
-        {
             name: "hmrc-start",
-            js: function(){
-                $('#get-started a')[0].click();
-            },
-            expectedUrl: "https://www.tax.service.gov.uk/paye/company-car/service-start-page"
+            open: "https://www.tax.service.gov.uk/paye/company-car/service-start-page"
         },
         {
             name: "saml",
@@ -50,58 +43,70 @@ module.exports = {
             js: function(){
                 $('#next-button')[0].click();
             }
+        },
+        {
+            name: "slide-4",
+            js: function(){
+                $('#next-button')[0].click();
+            }
+        },
+        {
+            name: "age-uk",
+            js: function(){
+                $('#next-button')[0].click();
+            }
+        },
+        {
+            name: "statements",
+            js: function(){
+                $('#age-yes')[0].click();
+                $('#residency-more-than-12')[0].click();
+                $('#next-button')[0].click();
+            }
+        },
+        {
+            name: "documents",
+            js: function(){
+                $('#yes')[0].click();
+                $('#next-button')[0].click();
+            }
+        },
+        {
+            name: "choose-company",
+            js: function(){
+                $('#driving_license_yes')[0].click();
+                $('#passport_yes')[0].click();
+                $('#next-button')[0].click();
+            }
+        },
+        {
+            name: "choose-company-back",
+            js: function(){
+                window.history.back()
+            },
+            screenshot: false
+        },
+        {
+            name: "choose-company-limited",
+            js: function(){
+                $('#driving_license_yes')[0].click();
+                $('#passport_no')[0].click();
+                $('#next-button')[0].click();
+            }
+        },
+        {
+            name: "about-company",
+            js: function(){
+                $('.company-about a')[0].click();
+            }
+        },
+        {
+            name: "company-chosen",
+            js: function(){
+                $('.dialog-inner:visible button')[0].click();
+            }
         }
 
     ]
 
 }
-
-//         'slide-4': function(){
-
-//             $('#next-button')[0].click();
-
-//         },
-
-//         'age-uk': function(){
-
-//             $('#next-button')[0].click();
-
-//         },
-
-//         'statements': function(){
-
-//             $('#age-yes')[0].click();
-//             $('#residency-more-than-12')[0].click();
-//             $('#next-button')[0].click();
-
-//         },
-
-//         'documents': function(){
-
-//             $('#yes')[0].click();
-//             $('#next-button')[0].click();
-
-//         },
-
-//         'choose-company': function(){
-
-//             $('#driving_license_yes')[0].click();
-//             $('#passport_yes')[0].click();
-//             $('#next-button')[0].click();
-
-//         },
-
-//         'about-company': function(){
-
-//             $('.company-about a')[0].click();
-
-//         },
-
-//         'company-chosen': function(){
-
-//             $('.dialog-inner:visible button')[0].click();
-
-//         }
-
-//     }
-// };

@@ -43,12 +43,26 @@ if (!script.keepCookies){
 	horseman.cookies([]);
 }
 
+waitForNextPage = false;
+
+function checkForWait(){
+
+	if (waitForNextPage){
+
+		horseman.waitForNextPage();
+		waitForNextPage = false;
+
+	}
+
+}
+
+var screenshotNumber = 1;
+
 script.steps.forEach(function(step, index){
 
-	var stepNumber = index + 1;
-	var waitForNextPage = false;
+	waitForNextPage = false;
 	
-	log.info(stepNumber + ": " + step.name);
+	log.info((index+1) + ": " + step.name);
 
 	if (step.open){
 
@@ -57,12 +71,7 @@ script.steps.forEach(function(step, index){
 
 	}
 
-	if (waitForNextPage){
-
-		horseman.waitForNextPage();
-		waitForNextPage = false;
-
-	}
+	checkForWait();
 
 	if (step.js){
 
@@ -71,12 +80,7 @@ script.steps.forEach(function(step, index){
 
 	}
 
-	if (waitForNextPage){
-
-		horseman.waitForNextPage();
-		waitForNextPage = false;
-
-	}
+	checkForWait();
 
 	if (step.expectedUrl){
 
@@ -93,13 +97,13 @@ script.steps.forEach(function(step, index){
 
 		script.sizes.forEach(function(size){
 
-			var filename = path.join(imagePath, scriptName, "" + size[0], stepNumber + '-' + step.name + '.png');
-
-			log.debug(filename);
+			var filename = path.join(imagePath, scriptName, "" + size[0], screenshotNumber + '-' + step.name + '.png');
 
 			if (size[2] == "crop") {
 
 				log.debug('crop');
+				log.debug(filename);
+
 				horseman
 					.viewport(size[0], size[1])
 					.crop({ top : 0, left: 0, width: size[0], height: size[1] }, filename);
@@ -107,6 +111,8 @@ script.steps.forEach(function(step, index){
 			} else {
 
 				log.debug('screenshot');
+				log.debug(filename);
+
 				horseman
 					.viewport(size[0], size[1])
 					.screenshot(filename);
@@ -114,11 +120,11 @@ script.steps.forEach(function(step, index){
 			}
 
 		});
-	}
 
-	stepNumber++;
+		screenshotNumber++;
+	}
 
 });
 
 horseman.close();
-log.debug("All done");
+log.info("All done");
