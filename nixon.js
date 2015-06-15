@@ -1,4 +1,7 @@
 var path = require('path');
+var log = require('tracer').colorConsole({
+    format : "{{message}}"
+});
 var Horseman = require('node-horseman');
 var horseman = new Horseman();
 
@@ -32,7 +35,7 @@ var argv = require('minimist')(process.argv.slice(2));
 
 var scriptName = argv._[0] || "example";
 
-console.log("running: " + scriptName);
+log.debug("running: " + scriptName);
 
 var script = require(path.join(__dirname, 'scripts', scriptName));
 
@@ -45,7 +48,7 @@ script.steps.forEach(function(step, index){
 	var stepNumber = index + 1;
 	var waitForNextPage = false;
 	
-	console.log(stepNumber + ": " + step.name);
+	log.info(stepNumber + ": " + step.name);
 
 	if (step.open){
 
@@ -78,32 +81,32 @@ script.steps.forEach(function(step, index){
 	if (step.expectedUrl){
 
 		if (horseman.url() != step.expectedUrl){
-			console.warn("Expected URL: " + step.expectedUrl);
-			console.warn("Current URL:  " + horseman.url());
+			log.warn("Expected URL: " + step.expectedUrl);
+			log.warn("Current URL:  " + horseman.url());
 		}
 
 	}
 
 	if (step.screenshot != false){
 
-		console.log(horseman.url());
+		log.debug(horseman.url());
 
 		script.sizes.forEach(function(size){
 
 			var filename = path.join(imagePath, scriptName, "" + size[0], stepNumber + '-' + step.name + '.png');
 
-			console.log(filename);
+			log.debug(filename);
 
 			if (size[2] == "crop") {
 
-				console.log('crop');
+				log.debug('crop');
 				horseman
 					.viewport(size[0], size[1])
 					.crop({ top : 0, left: 0, width: size[0], height: size[1] }, filename);
 
 			} else {
 
-				console.log('screenshot');
+				log.debug('screenshot');
 				horseman
 					.viewport(size[0], size[1])
 					.screenshot(filename);
@@ -118,4 +121,4 @@ script.steps.forEach(function(step, index){
 });
 
 horseman.close();
-console.log("All done");
+log.debug("All done");
