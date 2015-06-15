@@ -1,6 +1,8 @@
 
 module.exports = {
 
+    screenshotPath : "screenshots/[script]/[size.width]-[size.crop]/[##]-[step.name]",
+    
     username: "",
     password: "",
 
