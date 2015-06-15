@@ -2,6 +2,7 @@ var path = require('path');
 var log = require('tracer').colorConsole({
     format : "{{message}}"
 });
+var zeroPad = require('zero-fill');
 var Horseman = require('node-horseman');
 var horseman = new Horseman();
 
@@ -44,12 +45,14 @@ var script = require(path.join(__dirname, 'scripts', scriptName));
 var screenshotPath = '"' + script.screenshotPath + '"';
 
 var replacements = {
-	"script": '" + scriptName + "',
-	"size.width": '" + size[0] + "',
-	"size.height": '" + size[1] + "',
-	"size.crop": '" + (size[2] == "crop" ? "crop" : "full") + "',
-	"#": '" + screenshotNumber + "',
-	"step.name": '" + step.name + "'
+	"script":		'" + scriptName + "',
+	"size.width": 	'" + size[0] + "',
+	"size.height": 	'" + size[1] + "',
+	"size.crop": 	'" + (size[2] == "crop" ? "crop" : "full") + "',
+	"###":			'" + zeroPad(3, screenshotNumber) + "',
+	"##":			'" + zeroPad(2, screenshotNumber) + "',
+	"#":			'" + screenshotNumber + "',
+	"step.name": 	'" + step.name + "'
 }
 
 for (var term in replacements){

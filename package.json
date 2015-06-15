@@ -6,7 +6,8 @@
   "dependencies": {
     "minimist": "^1.1.1",
     "node-horseman": "^1.5.1",
-    "tracer": "^0.7.4"
+    "tracer": "^0.7.4",
+    "zero-fill": "^2.2.1"
   },
   "devDependencies": {},
   "scripts": {

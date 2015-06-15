@@ -35,8 +35,8 @@ Type: String
 
 Where your screenshots will be saved. Supports the following tags:
 
-- **#** - the screenshot number
-- **script** - the name of the script
+- **#** - screenshot number (zero padded: ## outputs 01, ### outputs 001)
+- **script** - name of the script
 - **size.width**
 - **size.height**
 - **size.crop** - will output "full" or "crop" depending on the size set (see `sizes`)
