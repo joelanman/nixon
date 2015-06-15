@@ -39,6 +39,7 @@ Where your screenshots will be saved. Supports the following tags:
 - **script** - the name of the script
 - **size.width**
 - **size.height**
+- **size.crop** - will output "full" or "crop" depending on the size set (see `sizes`)
 - **step.name**
 
 For example: "screenshots/[script]/[size.width]/[#]-[step.name]"
@@ -47,7 +48,9 @@ For example: "screenshots/[script]/[size.width]/[#]-[step.name]"
 
 Type: Array
 
-The screen sizes you would like to capture, for example `[[800,600],[1280,1024]]`.
+The screen sizes you would like to capture. If you'd like the screenshot cropped to the set height, add "crop" as the 3rd item in the array.
+
+For example `[[800, 600], [1280, 1024, "crop"]]`.
 
 **steps** 
 

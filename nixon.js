@@ -47,6 +47,7 @@ var replacements = {
 	"script": '" + scriptName + "',
 	"size.width": '" + size[0] + "',
 	"size.height": '" + size[1] + "',
+	"size.crop": '" + (size[2] == "crop" ? "crop" : "full") + "',
 	"#": '" + screenshotNumber + "',
 	"step.name": '" + step.name + "'
 }
