@@ -19,7 +19,7 @@ In the terminal run:
 
 Screenshots will be saved into a 'screenshots' folder.
 
-## How to use
+## Scripts
 
 Make a copy of `scripts/example.js`, for example `scripts/blog.js`
 
@@ -27,7 +27,7 @@ You can now run this script:
 
 `node nixon blog`
 
-# Scripts
+### Script options
 
 **sizes**
 
@@ -37,7 +37,7 @@ An array of screen sizes you would like to capture, for example `[[800,600],[128
 
 An array of step objects for the script to carry out (see below).
 
-# Steps
+## Steps
 
 **expectedUrl**
 
