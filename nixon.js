@@ -5,6 +5,10 @@ var log = require('tracer').colorConsole({
 var Horseman = require('node-horseman');
 var horseman = new Horseman();
 
+function escapeRegExp(str) {
+  return str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&");
+}
+
 // patch horseman.crop
 
 horseman.crop = function( area, path ){
@@ -29,8 +33,6 @@ horseman.crop = function( area, path ){
 
 // end patch
 
-var imagePath = "screenshots";
-
 var argv = require('minimist')(process.argv.slice(2));
 
 var scriptName = argv._[0] || "example";
@@ -38,6 +40,26 @@ var scriptName = argv._[0] || "example";
 log.debug("running: " + scriptName);
 
 var script = require(path.join(__dirname, 'scripts', scriptName));
+
+var screenshotPath = '"' + script.screenshotPath + '"';
+
+// "screenshots/[script]/[size.width]/[#]-[step.name]"
+
+var replacements = {
+	"script": '" + scriptName + "',
+	"size.width": '" + size[0] + "',
+	"size.height": '" + size[1] + "',
+	"#": '" + screenshotNumber + "',
+	"step.name": '" + step.name + "'
+}
+
+for (var term in replacements){
+	var termRegEx = new RegExp(escapeRegExp('['+term+']'), 'g');
+	var replacement = replacements[term];
+	screenshotPath = screenshotPath.replace(termRegEx, replacement);
+}
+
+log.debug(screenshotPath);
 
 if (!script.keepCookies){
 	horseman.cookies([]);
@@ -97,7 +119,7 @@ script.steps.forEach(function(step, index){
 
 		script.sizes.forEach(function(size){
 
-			var filename = path.join(imagePath, scriptName, "" + size[0], screenshotNumber + '-' + step.name + '.png');
+			var filename = eval(screenshotPath) + '.png';
 
 			if (size[2] == "crop") {
 
