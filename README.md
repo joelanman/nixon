@@ -41,6 +41,8 @@ Where your screenshots will be saved. Supports the following tags:
 - **size.height**
 - **step.name**
 
+For example: "screenshots/[script]/[size.width]/[#]-[step.name]"
+
 **sizes**
 
 Type: Array
