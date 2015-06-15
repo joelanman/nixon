@@ -44,7 +44,7 @@ Where your screenshots will be saved. Supports the following tags:
 
 For example: "screenshots/[script]/[size.width]/[#]-[step.name]"
 
-#### sizes
+### sizes
 
 Type: Array
 
@@ -52,7 +52,7 @@ The screen sizes you would like to capture. If you'd like the screenshot cropped
 
 For example `[[800, 600], [1280, 1024, "crop"]]`.
 
-**steps** 
+### steps
 
 Type: Array
 
