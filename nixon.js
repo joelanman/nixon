@@ -40,57 +40,82 @@ if (!script.keepCookies){
 	horseman.cookies([]);
 }
 
-var stepNumber = 1;
+script.steps.forEach(function(step, index){
 
-for (var name in script.steps){
+	var stepNumber = index + 1;
+	var waitForNextPage = false;
 	
-	console.log(stepNumber + ": " + name);
+	console.log(stepNumber + ": " + step.name);
 
-	var step = script.steps[name];
+	if (step.open){
 
-	if (step.call){
-
-		horseman.manipulate(step);
-
-	} else {
-
-		horseman.open(step);
+		horseman.open(step.open);
+		waitForNextPage = true;
 
 	}
 
-	//console.log("waiting for next page ...");
+	if (waitForNextPage){
 
-	horseman.waitForNextPage();
+		horseman.waitForNextPage();
+		waitForNextPage = false;
 
-	//console.log("... done waiting");
-	console.log(horseman.url());
+	}
 
-	script.sizes.forEach(function(size){
+	if (step.js){
 
-		var filename = path.join(imagePath, scriptName, "" + size[0], stepNumber + '-' + name + '.png');
-		console.log(filename);
+		horseman.manipulate(step.js);
+		waitForNextPage = true;
 
-		if (size[2] == "crop") {
+	}
 
-			console.log('crop');
-			horseman
-				.viewport(size[0], size[1])
-				.crop({ top : 0, left: 0, width: size[0], height: size[1] }, filename);
+	if (waitForNextPage){
 
-		} else {
+		horseman.waitForNextPage();
+		waitForNextPage = false;
 
-			console.log('screenshot');
-			horseman
-				.viewport(size[0], size[1])
-				.screenshot(filename);
+	}
 
+	if (step.expectedUrl){
+
+		if (horseman.url() != step.expectedUrl){
+			console.warn("Expected URL: " + step.expectedUrl);
+			console.warn("Current URL:  " + horseman.url());
 		}
 
-	});
+	}
+
+	if (step.screenshot != false){
+
+		console.log(horseman.url());
+
+		script.sizes.forEach(function(size){
+
+			var filename = path.join(imagePath, scriptName, "" + size[0], stepNumber + '-' + step.name + '.png');
+
+			console.log(filename);
+
+			if (size[2] == "crop") {
+
+				console.log('crop');
+				horseman
+					.viewport(size[0], size[1])
+					.crop({ top : 0, left: 0, width: size[0], height: size[1] }, filename);
+
+			} else {
+
+				console.log('screenshot');
+				horseman
+					.viewport(size[0], size[1])
+					.screenshot(filename);
+
+			}
+
+		});
+	}
 
 	stepNumber++;
 
-}
+});
 
 horseman.close();
 console.log("All done");

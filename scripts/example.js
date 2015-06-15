@@ -9,14 +9,18 @@ module.exports = {
         [320,480]
     ],
 
-    steps : {
+    steps : [
 
-        'home' : "https://www.gov.uk",
-
-        'browse': function(){
-
-            $('.categories-list a')[0].click();
+        {
+            name: "home",
+            open: "https://www.gov.uk"
+        },
+        {
+            name: "browse",
+            js: function(){
+                $('.categories-list a')[0].click();
+            }
 
         }
-    }
+    ]
 };
