@@ -29,11 +29,27 @@ You can now run this script:
 
 ### Script options
 
+**screenshotPath**
+
+Type: String
+
+Where your screenshots will be saved. Supports the following tags:
+
+- # - the screenshot number
+- **script** - the name of the script
+- **size.width**
+- **size.hight**
+- **step.name**
+
 **sizes**
 
-An array of screen sizes you would like to capture, for example `[[800,600],[1280,1024]]`.
+Type: Array
+
+The screen sizes you would like to capture, for example `[[800,600],[1280,1024]]`.
 
 **steps** 
+
+Type: Array
 
 An array of step objects for the script to carry out (see below).
 

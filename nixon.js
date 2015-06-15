@@ -43,8 +43,6 @@ var script = require(path.join(__dirname, 'scripts', scriptName));
 
 var screenshotPath = '"' + script.screenshotPath + '"';
 
-// "screenshots/[script]/[size.width]/[#]-[step.name]"
-
 var replacements = {
 	"script": '" + scriptName + "',
 	"size.width": '" + size[0] + "',
