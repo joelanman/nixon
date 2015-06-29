@@ -36,6 +36,9 @@ horseman.crop = function( area, path ){
 
 var argv = require('minimist')(process.argv.slice(2));
 
+var username = argv.user || argv.u || "";
+var password = argv.password || argv.p || "";
+
 var scriptName = argv._[0] || "example";
 
 log.debug("running: " + scriptName);
@@ -65,6 +68,11 @@ log.debug(screenshotPath);
 
 if (!script.keepCookies){
 	horseman.cookies([]);
+}
+
+if (username && password){
+	log.debug(username,password);
+	horseman.headers({'Authorization': 'Basic ' + new Buffer(username + ':' + password).toString('base64')});
 }
 
 waitForNextPage = false;
