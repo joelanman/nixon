@@ -1,5 +1,7 @@
 # Nixon
 
+[![Join the chat at https://gitter.im/joelanman/nixon](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/joelanman/nixon?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 A framework to step through a website saving screenshots, based on [Horseman](https://github.com/johntitus/node-horseman).
 
 ## You need
