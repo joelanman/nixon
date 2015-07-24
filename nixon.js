@@ -8,6 +8,8 @@ var zeroPad = require('zero-fill');
 var Horseman = require('node-horseman');
 var horseman = new Horseman();
 
+var uploadToDorian = require(__dirname+"/lib/uploadToDorian");
+
 function escapeRegExp(str) {
   return str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&");
 }
@@ -47,10 +49,18 @@ log.debug("running: " + scriptName);
 
 var script = require(process.cwd() + "/" + scriptName);
 
+var serviceName = script.service;
+
+var output = {
+	service: serviceName,
+	journeys: []
+};
+
 var screenshotPath = '"' + script.screenshotPath + '"';
 
 var replacements = {
-	"script":		'" + scriptName + "',
+	"service":		'" + serviceName + "',
+	"journey":		'" + journeyName + "',
 	"size.width": 	'" + size[0] + "',
 	"size.height": 	'" + size[1] + "',
 	"size.crop": 	'" + (size[2] == "crop" ? "crop" : "full") + "',
@@ -90,73 +100,94 @@ function checkForWait(){
 
 var screenshotNumber = 1;
 
-script.steps.forEach(function(step, index){
+script.journeys.forEach(function(journey){
 
-	waitForNextPage = false;
-	
-	log.info((index+1) + ": " + step.name);
+	var journeyName = journey.name;
 
-	if (step.open){
-
-		horseman.open(step.open);
-		waitForNextPage = true;
-
+	var journeyOutput = {
+		"name": journeyName,
+		"screens": []
 	}
 
-	checkForWait();
+	output.journeys.push(journeyOutput);
 
-	if (step.js){
+	journey.steps.forEach(function(step, index){
 
-		horseman.manipulate(step.js);
-		waitForNextPage = true;
+		var screenOutput = {
+			"name": step.name,
+			"image-filename": step.name + ".png"
+		};
 
-	}
+		journeyOutput.screens.push(screenOutput);
 
-	checkForWait();
+		waitForNextPage = false;
+		
+		log.info((index+1) + ": " + step.name);
 
-	if (step.expectedUrl){
+		if (step.open){
 
-		if (horseman.url() != step.expectedUrl){
-			log.warn("Expected URL: " + step.expectedUrl);
-			log.warn("Current URL:  " + horseman.url());
+			horseman.open(step.open);
+			waitForNextPage = true;
+
 		}
 
-	}
+		checkForWait();
 
-	if (step.screenshot != false){
+		if (step.js){
 
-		log.debug(horseman.url());
+			horseman.manipulate(step.js);
+			waitForNextPage = true;
 
-		script.sizes.forEach(function(size){
+		}
 
-			var filename = eval(screenshotPath) + '.png';
+		checkForWait();
 
-			if (size[2] == "crop") {
+		if (step.expectedUrl){
 
-				log.debug('crop');
-				log.debug(filename);
-
-				horseman
-					.viewport(size[0], size[1])
-					.crop({ top : 0, left: 0, width: size[0], height: size[1] }, filename);
-
-			} else {
-
-				log.debug('screenshot');
-				log.debug(filename);
-
-				horseman
-					.viewport(size[0], size[1])
-					.screenshot(filename);
-
+			if (horseman.url() != step.expectedUrl){
+				log.warn("Expected URL: " + step.expectedUrl);
+				log.warn("Current URL:  " + horseman.url());
 			}
 
-		});
+		}
 
-		screenshotNumber++;
-	}
+		if (step.screenshot != false){
 
+			log.debug(horseman.url());
+
+			script.sizes.forEach(function(size){
+
+				var filename = eval(screenshotPath) + '.png';
+
+				if (size[2] == "crop") {
+
+					log.debug('crop');
+					log.debug(filename);
+
+					horseman
+						.viewport(size[0], size[1])
+						.crop({ top : 0, left: 0, width: size[0], height: size[1] }, filename);
+
+				} else {
+
+					log.debug('screenshot');
+					log.debug(filename);
+
+					horseman
+						.viewport(size[0], size[1])
+						.screenshot(filename);
+
+				}
+
+			});
+
+			screenshotNumber++;
+		}
+
+	});
 });
 
 horseman.close();
+log.info(JSON.stringify(output, null, "  "));
+uploadToDorian(output);
 log.info("All done");
