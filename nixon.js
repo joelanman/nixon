@@ -41,7 +41,7 @@ var argv = require('minimist')(process.argv.slice(2));
 var username = argv.user || argv.u || "";
 var password = argv.password || argv.p || "";
 
-var scriptName = argv._[0] || "example";
+var scriptName = argv._[0] || "example-script";
 
 log.debug("running: " + scriptName);
 
@@ -65,8 +65,6 @@ for (var term in replacements){
 	var replacement = replacements[term];
 	screenshotPath = screenshotPath.replace(termRegEx, replacement);
 }
-
-log.debug(screenshotPath);
 
 if (!script.keepCookies){
 	horseman.cookies([]);
