@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 var path = require('path');
 var log = require('tracer').colorConsole({
     format : "{{message}}"
@@ -43,7 +45,7 @@ var scriptName = argv._[0] || "example";
 
 log.debug("running: " + scriptName);
 
-var script = require(path.join(__dirname, 'scripts', scriptName));
+var script = require(process.cwd() + "/" + scriptName);
 
 var screenshotPath = '"' + script.screenshotPath + '"';
 

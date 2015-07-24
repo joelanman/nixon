@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "screenshot tool",
   "main": "nixon.js",
+  "preferGlobal": true,
+  "bin": {
+    "nixon": "nixon.js"
+  },
   "dependencies": {
     "minimist": "^1.1.1",
     "node-horseman": "^1.5.1",
