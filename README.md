@@ -10,8 +10,6 @@ A framework to step through a website saving screenshots, based on [Horseman](ht
 ## Getting started
 
 * [Download Nixon](https://github.com/joelanman/nixon/archive/master.zip)
-* [Download scripts](https://github.com/joelanman/nixon-scripts)
-* Copy the scripts folder to the Nixon folder
 
 In the terminal, change to Nixon directory and run:
 
@@ -19,11 +17,11 @@ In the terminal, change to Nixon directory and run:
 
 * `node nixon`
 
-Screenshots will be saved into a 'screenshots' folder.
+The example script will run , and screenshots will be saved into a 'screenshots' folder.
 
 ## Scripts
 
-Make a copy of `scripts/example.js`, for example `scripts/blog.js`
+Make a copy of `example-script.js`, for example `blog.js`
 
 You can now run this script:
 
