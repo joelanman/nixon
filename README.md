@@ -10,8 +10,10 @@ A framework to step through a website saving screenshots, based on [Horseman](ht
 ## Getting started
 
 * [Download Nixon](https://github.com/joelanman/nixon/archive/master.zip)
+* [Download scripts](https://github.com/joelanman/nixon-scripts)
+* Copy the scripts folder to the Nixon folder
 
-In the terminal run:
+In the terminal, change to Nixon directory and run:
 
 * `npm install`
 
