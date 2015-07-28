@@ -9,12 +9,14 @@ module.exports = {
     ],
 
     service: "GOV.UK",
+    slug: "gov-uk",
 
     journeys: [
 
         {
 
-            name: "browse",
+            name: "Browse",
+            slug: "browse",
 
             steps : [
 

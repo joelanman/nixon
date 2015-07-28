@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-
+var fs = require("fs");
 var path = require('path');
 var log = require('tracer').colorConsole({
     format : "{{message}}"
@@ -53,6 +53,7 @@ var serviceName = script.service;
 
 var output = {
 	service: serviceName,
+	slug: script.slug,
 	journeys: []
 };
 
@@ -106,6 +107,7 @@ script.journeys.forEach(function(journey){
 
 	var journeyOutput = {
 		"name": journeyName,
+		"slug": journey.slug,
 		"screens": []
 	}
 
@@ -189,5 +191,6 @@ script.journeys.forEach(function(journey){
 
 horseman.close();
 log.info(JSON.stringify(output, null, "  "));
+fs.writeFileSync("data.json", JSON.stringify(output, null, "  "));
 uploadToDorian(output);
 log.info("All done");
