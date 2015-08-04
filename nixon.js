@@ -116,8 +116,7 @@ script.journeys.forEach(function(journey){
 	journey.steps.forEach(function(step, index){
 
 		var screenOutput = {
-			"name": step.name,
-			"image-filename": step.name + ".png"
+			"name": step.name
 		};
 
 		journeyOutput.screens.push(screenOutput);
@@ -159,25 +158,28 @@ script.journeys.forEach(function(journey){
 
 			script.sizes.forEach(function(size){
 
-				var filename = eval(screenshotPath) + '.png';
+				var filePath = eval(screenshotPath) + '.png';
+
+				screenOutput['image-path'] = filePath;
+				screenOutput["image-filename"] = path.basename(filePath);
 
 				if (size[2] == "crop") {
 
 					log.debug('crop');
-					log.debug(filename);
+					log.debug(filePath);
 
 					horseman
 						.viewport(size[0], size[1])
-						.crop({ top : 0, left: 0, width: size[0], height: size[1] }, filename);
+						.crop({ top : 0, left: 0, width: size[0], height: size[1] }, filePath);
 
 				} else {
 
 					log.debug('screenshot');
-					log.debug(filename);
+					log.debug(filePath);
 
 					horseman
 						.viewport(size[0], size[1])
-						.screenshot(filename);
+						.screenshot(filePath);
 
 				}
 

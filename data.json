@@ -1,0 +1,22 @@
+{
+  "service": "GOV.UK",
+  "slug": "gov-uk",
+  "journeys": [
+    {
+      "name": "Browse",
+      "slug": "browse",
+      "screens": [
+        {
+          "name": "home",
+          "image-path": "screenshots/GOV.UK/Browse/320-full/01-home.png",
+          "image-filename": "01-home.png"
+        },
+        {
+          "name": "browse",
+          "image-path": "screenshots/GOV.UK/Browse/320-full/02-browse.png",
+          "image-filename": "02-browse.png"
+        }
+      ]
+    }
+  ]
+}
