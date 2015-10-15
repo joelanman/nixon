@@ -4,12 +4,12 @@ A framework to step through a website saving screenshots, based on [Horseman](ht
 
 ## You need
 
-* [Node.js](http://node.js)
+* Node.js version 0.12.7 - get this using [NVM](https://github.com/creationix/nvm)
 * [PhantomJS](http://phantomjs.org) - version 2 or later
 
 ## Getting started
 
-* [Download Nixon](https://github.com/joelanman/nixon/archive/master.zip)
+* [Download Nixon](https://github.com/joelanman/nixon/archive/dorian.zip)
 
 In the terminal, change to Nixon directory and run:
 
