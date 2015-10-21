@@ -10,6 +10,7 @@ module.exports = {
 
     service: "GOV.UK",
     slug: "gov-uk",
+    datetime: "2015-10-21T12:23:31.803Z",
 
     journeys: [
 
@@ -21,14 +22,14 @@ module.exports = {
             steps : [
 
                 {
-                    name: "home",
-                    open: "https://www.gov.uk"
+                    open: "https://www.gov.uk",
+                    screenshot: "home"
                 },
                 {
-                    name: "browse",
                     js: function(){
                         $('.categories-list a')[0].click();
-                    }
+                    },
+                    screenshot: "browse"
 
                 }
             ]

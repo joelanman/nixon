@@ -1,7 +1,7 @@
 {
   "service": "GOV.UK",
   "slug": "gov-uk",
-  "datetime": "2015-10-20T18:09:45.797Z",
+  "datetime": "2015-10-21T12:23:31.803Z",
   "journeys": [
     {
       "name": "Browse",
@@ -9,13 +9,13 @@
       "screens": [
         {
           "slug": "home",
-          "image-path": "screenshots/GOV.UK/Browse/1024-full/01-home.png",
-          "image-filename": "01-home.png"
+          "image-path": "screenshots/GOV.UK/Browse/1024-full/01-[step.name].png",
+          "image-filename": "01-[step.name].png"
         },
         {
           "slug": "browse",
-          "image-path": "screenshots/GOV.UK/Browse/1024-full/02-browse.png",
-          "image-filename": "02-browse.png"
+          "image-path": "screenshots/GOV.UK/Browse/1024-full/02-[step.name].png",
+          "image-filename": "02-[step.name].png"
         }
       ]
     }

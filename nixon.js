@@ -69,7 +69,7 @@ var replacements = {
 	"###":			'" + zeroPad(3, screenshotNumber) + "',
 	"##":			'" + zeroPad(2, screenshotNumber) + "',
 	"#":			'" + screenshotNumber + "',
-	"step.name": 	'" + step.name + "'
+	"step.screenshot": 	'" + step.screenshot + "'
 }
 
 for (var term in replacements){
@@ -116,15 +116,19 @@ script.journeys.forEach(function(journey){
 
 	journey.steps.forEach(function(step, index){
 
-		var screenOutput = {
-			"slug": step.name
-		};
+		if (step.screenshot){
 
-		journeyOutput.screens.push(screenOutput);
+			var screenOutput = {
+				"slug": step.screenshot
+			};
+
+			journeyOutput.screens.push(screenOutput);
+
+		}
 
 		waitForNextPage = false;
 		
-		log.info((index+1) + ": " + step.name);
+		log.info((index+1) + ": " + (step.screenshot || ""));
 
 		if (step.open){
 
@@ -153,14 +157,7 @@ script.journeys.forEach(function(journey){
 
 		}
 
-		if (step.screenshot == false){
-
-			// remove the data - we don't
-			// need it for a non screenshot step
-			
-			journeyOutput.screens.pop();
-
-		} else {
+		if (step.screenshot){
 
 			log.debug(horseman.url());
 
