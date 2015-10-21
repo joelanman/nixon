@@ -4,8 +4,8 @@ module.exports = {
     screenshotPath : "screenshots/[service]/[journey]/[size.width]-[size.crop]/[##]-[step.name]",
 
     sizes : [
-        [1024,768],
-        [320,480]
+        [320,480],
+        [1024,768]
     ],
 
     service: "GOV.UK",

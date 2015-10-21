@@ -16,25 +16,25 @@ function escapeRegExp(str) {
 
 // patch horseman.crop
 
-horseman.crop = function( area, path ){
-  if ( typeof area === "string" ){
-    area = this.boundingRectangle( area );
-  } 
-  var rect = {
-    top : area.top,
-    left : area.left,
-    width : area.width,
-    height : area.height
-  };
-  var self = this;
-  this.page.set('clipRect', rect, function(){
-    self.pause.unpause('clipRect');
-    self.screenshot( path );
-    self.page.set('clipRect', {});
-    return this;
-  });
-  this.pause.pause('clipRect');  
-}
+// horseman.crop = function( area, path ){
+//   if ( typeof area === "string" ){
+//     area = this.boundingRectangle( area );
+//   } 
+//   var rect = {
+//     top : area.top,
+//     left : area.left,
+//     width : area.width,
+//     height : area.height
+//   };
+//   var self = this;
+//   this.page.set('clipRect', rect, function(){
+//     self.pause.unpause('clipRect');
+//     self.screenshot( path );
+//     self.page.set('clipRect', {});
+//     return this;
+//   });
+//   this.pause.pause('clipRect');  
+// }
 
 // end patch
 
@@ -54,6 +54,7 @@ var serviceName = script.service;
 var output = {
 	service: serviceName,
 	slug: script.slug,
+	datetime: script.datetime || new Date().toISOString(),
 	journeys: []
 };
 
@@ -116,7 +117,7 @@ script.journeys.forEach(function(journey){
 	journey.steps.forEach(function(step, index){
 
 		var screenOutput = {
-			"name": step.name
+			"slug": step.name
 		};
 
 		journeyOutput.screens.push(screenOutput);
@@ -152,7 +153,14 @@ script.journeys.forEach(function(journey){
 
 		}
 
-		if (step.screenshot != false){
+		if (step.screenshot == false){
+
+			// remove the data - we don't
+			// need it for a non screenshot step
+			
+			journeyOutput.screens.pop();
+
+		} else {
 
 			log.debug(horseman.url());
 
